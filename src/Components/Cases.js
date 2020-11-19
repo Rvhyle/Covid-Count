@@ -2,17 +2,17 @@ import React from 'react';
 // Styles
 import { CasesStyled } from '../Styled-Components/StyledCases';
 
-const Cases = ({ usCases, setUsCases }) => {
+const Cases = ({ usCases, setUsCases, usDeaths, setUsDeaths}) => {
 
     return (
         <CasesStyled>
-            <div className="totalCases">
+            <div className="data cases">
                 <h1>USA Total Cases:</h1>
                 <h2>{usCases}</h2>
             </div>
-            <div className="totalDeaths">
+            <div className="data deaths">
                 <h1>USA Total Deaths:</h1>
-                <h2>{/*Stats*/}</h2>
+                <h2>{usDeaths}</h2>
             </div>
         </CasesStyled>
     )
