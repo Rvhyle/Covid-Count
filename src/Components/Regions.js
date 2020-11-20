@@ -1,20 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+//Styles
+import {RegionStyled,Region} from '../Styled-Components/StyledRegions';
 
 
 const Regions = () => {
     return (
-        <div className="region">
-           <Link to="/east">
-               <h2>East</h2>
-           </Link>
-           <Link to="/central">
-               <h2>Central</h2>
-           </Link>
-           <Link to="/west">
-               <h2>West</h2>
-           </Link>
-        </div>
+        <Region>
+            <h1>Select a US region:</h1>
+            <RegionStyled>
+                <Link to="/east" className="link">
+                    <h2>East</h2>
+                </Link>
+                <Link to="/central" className="link">
+                    <h2>Central</h2>
+                </Link>
+                <Link to="/west" className="link">
+                    <h2>West</h2>
+                </Link>
+            </RegionStyled>
+        </Region>
     )
 }
 

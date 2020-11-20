@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-
 const GlobalStyle = createGlobalStyle`
 *{
     margin: 0;
@@ -8,11 +7,14 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
 }
 
+html{
+    max-width:1920px;
+    margin: auto;
+}
+
 body{
     font-family: 'Rubik', sans-serif;
     background-color: #0F0F0F;
-    max-width:1920px;
-    margin: auto;
 }
 
 h1{
