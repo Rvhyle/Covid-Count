@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 //Styles
-import {RegionStyled,Region} from '../Styled-Components/StyledRegions';
+import { RegionStyled, Region } from '../Styled-Components/StyledRegions';
 
 
 const Regions = () => {
@@ -19,6 +19,7 @@ const Regions = () => {
                     <h2>West</h2>
                 </Link>
             </RegionStyled>
+            <h3>*Updates at 24:00:00Z</h3>
         </Region>
     )
 }
