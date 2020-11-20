@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export const NavStyled = styled.nav`
     display: flex;
     max-width:100vw;
-    padding:0rem 8rem;
     justify-content:space-between;
     align-items:center;
     height:112px;
@@ -17,7 +16,7 @@ export const NavStyled = styled.nav`
 
 // TITLE
 export const Title = styled.div`
-
+padding-left:8rem;
 h1{
     color:White;
     font-weight:500;
@@ -35,9 +34,11 @@ p{
 // LINKS
 export const NavLinks = styled.ul`
 display: flex;
+gap:50px;
+padding-right:8rem;
 li{
     list-style:none;
-    padding-left:1.5rem;
+    font-size:1.2rem;
 
     .link{
         color:white;

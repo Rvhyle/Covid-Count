@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CasesStyled = styled.div`
 h2{
     color:#DE4040;
-    font-size:2rem;
+    font-size:2.7rem;
 }
 
 .data {
@@ -11,6 +11,10 @@ h2{
 }
 
 .cases {
-    padding-top:2rem;
+    margin-top:5rem;
+}
+
+h1{
+    font-size:3rem;
 }
 `
