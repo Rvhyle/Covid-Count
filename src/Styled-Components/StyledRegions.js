@@ -6,7 +6,7 @@ flex-direction: row;
 flex-wrap:wrap;
 justify-content: center;
 gap:100px;
-margin-top:3.5rem;
+margin-top:2.5rem;
 
 h2{
     font-size:2.5rem;
@@ -30,10 +30,18 @@ h2{
 `
 
 export const Region = styled.div`
-margin-top:7rem;
+margin-top:6rem;
 
 h1{
     font-size:1.7rem;
     font-weight:400;
+}
+
+h3{
+    color:white;
+    font-weight:300;
+    padding-top:2rem;
+    padding-bottom:4rem;
+    opacity:0.3;
 }
 `
