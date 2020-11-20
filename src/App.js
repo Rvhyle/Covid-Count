@@ -1,5 +1,6 @@
 import { React } from 'react';
 import Nav from './Components/Nav';
+import Footer from './Components/Footer';
 // Pages/Components
 import HomePage from './Pages/HomePage';
 import EastCoast from './Pages/EastCoast';
@@ -30,6 +31,7 @@ function App() {
           <WestCoast />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }
