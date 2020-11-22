@@ -12,8 +12,8 @@ const Regions = () => {
                 <Link to="/east" className="link">
                     <h2>East</h2>
                 </Link>
-                <Link to="/central" className="link">
-                    <h2>Central</h2>
+                <Link to="/midwest" className="link">
+                    <h2>Mid-West</h2>
                 </Link>
                 <Link to="/west" className="link">
                     <h2>West</h2>
