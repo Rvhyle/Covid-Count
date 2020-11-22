@@ -6,7 +6,7 @@ export const NavStyled = styled.nav`
     max-width:100vw;
     justify-content:space-between;
     align-items:center;
-    height:112px;
+    height:80px;
     background-color:#252525;
 
     .title{

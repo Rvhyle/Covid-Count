@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Footer = () => {
     return (
         <FooterStyled>
-            <a href="https://github.com/Rvhyle/Covid-Count" target="_blank">GitHub Repository</a>
+            <a href="https://github.com/Rvhyle/Covid-Count" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
         </FooterStyled>
     )
 }
@@ -15,7 +15,6 @@ align-items:center;
 justify-content:center;
 width: 100%;
 height:50px;
-position:fixed;
 bottom:0;
 background-color:#252525;
  a{

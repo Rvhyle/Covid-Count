@@ -29,8 +29,6 @@ const HomePage = () => {
             let caseIncrease = res.data[0].positiveIncrease;
             let testTotal = res.data[0].totalTestResults;
 
-            console.log(res.data[0]);
-
             // Setting States
             setUsCases(cases);
             setUsDeaths(death);

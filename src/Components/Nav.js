@@ -14,9 +14,7 @@ const Nav = () => {
             </Link>
             <NavLinks>
                 <li><Link className="link" to="/">Home</Link></li>
-                <li><Link className="link" to="/east">East</Link></li>
-                <li><Link className="link" to="/central">Central</Link></li>
-                <li><Link className="link" to="/west">West</Link></li>
+                <li><Link className="link" to="/charts">Charts</Link></li>
             </NavLinks>
         </NavStyled>
     )
