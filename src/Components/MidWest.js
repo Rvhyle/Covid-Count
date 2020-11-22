@@ -35,7 +35,28 @@ const MidWest = () => {
     }, [...mwData]);
 
     return (
-        <Bar data={chartData} options={{ responsive: true }} />
+        <Bar 
+        data={chartData} 
+        options={
+            { 
+                responsive: true ,
+                title: {display: true,text:"Mid West Region Cases",fontSize:20,fontColor:'#ffffff'},
+                scales:{
+                    xAxes:[{
+                            gridLines: {
+                            drawTicks: true,
+                            color:'rgba(255, 255, 255, 0.10)'
+                            }
+                    }],
+                    yAxes:[{
+                        gridLines: {
+                        drawTicks: true,
+                        color:'rgba(255, 255, 255, 0.35)'
+                        }
+                    }]
+                }
+            }
+        } />
     )
 }
 

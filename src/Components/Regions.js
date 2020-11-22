@@ -7,16 +7,10 @@ import { RegionStyled, Region } from '../Styled-Components/StyledRegions';
 const Regions = () => {
     return (
         <Region>
-            <h1>Select a US region:</h1>
+            <h1>Cases For Each Region:</h1>
             <RegionStyled>
-                <Link to="/east" className="link">
-                    <h2>East</h2>
-                </Link>
-                <Link to="/midwest" className="link">
-                    <h2>Mid-West</h2>
-                </Link>
-                <Link to="/west" className="link">
-                    <h2>West</h2>
+                <Link to="/charts" className="link">
+                    <h2>See Charts</h2>
                 </Link>
             </RegionStyled>
             <h3>*Updates at 24:00:00Z</h3>
