@@ -12,6 +12,13 @@ export const NavStyled = styled.nav`
     .title{
         text-decoration:none;
     }
+/* Mobile Screen */
+    @media screen and (max-width:767px) {
+        flex-direction:column;
+        justify-items:center;
+        text-align:center;
+        height:130px;
+    }
 `
 
 // TITLE
@@ -28,6 +35,11 @@ p{
     color:white;
     opacity:50%;
     font-size:.8rem;
+}
+/* Mobile Screens */
+@media screen and (max-width:767px) {
+    padding:0rem;
+    padding-top:1rem;
 }
 `
 
@@ -48,5 +60,9 @@ li{
             text-decoration:underline;
         }
     }
+}
+/* Mobile Screens */
+@media screen and (max-width:767px) {
+    padding:2rem;
 }
 `

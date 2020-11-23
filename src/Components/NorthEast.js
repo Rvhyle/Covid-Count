@@ -35,28 +35,28 @@ const NorthEast = () => {
     }, [...neData]);
 
     return (
-        <Bar 
-        data={chartData} 
-        options={
-            { 
-                responsive: true ,
-                title: {display: true,text:"North East Region Cases",fontSize:20,fontColor:'#ffffff'},
-                scales:{
-                    xAxes:[{
+        <Bar
+            data={chartData}
+            options={
+                {
+                    responsive: true,
+                    title: { display: true, text: "North East Region Cases", fontSize: 20, fontColor: '#ffffff' },
+                    scales: {
+                        xAxes: [{
                             gridLines: {
-                            drawTicks: true,
-                            color:'rgba(255, 255, 255, 0.10)'
+                                drawTicks: true,
+                                color: 'rgba(255, 255, 255, 0.10)'
                             }
-                    }],
-                    yAxes:[{
-                        gridLines: {
-                        drawTicks: true,
-                        color:'rgba(255, 255, 255, 0.35)'
-                        }
-                    }]
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                drawTicks: true,
+                                color: 'rgba(255, 255, 255, 0.35)'
+                            }
+                        }]
+                    }
                 }
-            }
-        } />
+            } />
     )
 }
 
