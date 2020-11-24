@@ -19,4 +19,8 @@ h2{
 h1{
     font-size:2rem;
 }
+
+@media screen and (max-width:767px) {
+    row-gap:100px;
+}
 `
