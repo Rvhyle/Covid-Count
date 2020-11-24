@@ -12,11 +12,6 @@ const West = () => {
     const [chartData, setChartData] = useState({});
 
     const ChartSetUp = () => {
-        getStateData(WestStates)
-            .then(data => {
-                setWData([...data])
-            })
-            .catch(err => console.log(err));
 
         setChartData({
             labels: [...WestStates],
@@ -31,32 +26,46 @@ const West = () => {
     }
 
     useEffect(() => {
-        ChartSetUp();
-    }, [...westData]);
+        let mounted = true;
+
+        getStateData(WestStates)
+            .then(data => {
+                if (mounted) {
+                    setWData([...data])
+                    ChartSetUp();
+                }
+            })
+            .catch(err => console.log(err));
+
+        return () => {
+            mounted = false;
+        }
+
+    }, [westData, ChartSetUp]);
 
     return (
-        <Bar 
-        data={chartData} 
-        options={
-            { 
-                responsive: true ,
-                title: {display: true,text:"West Region Cases",fontSize:20,fontColor:'#ffffff'},
-                scales:{
-                    xAxes:[{
+        <Bar
+            data={chartData}
+            options={
+                {
+                    responsive: true,
+                    title: { display: true, text: "West Region Cases", fontSize: 20, fontColor: '#ffffff' },
+                    scales: {
+                        xAxes: [{
                             gridLines: {
-                            drawTicks: true,
-                            color:'rgba(255, 255, 255, 0.10)'
+                                drawTicks: true,
+                                color: 'rgba(255, 255, 255, 0.10)'
                             }
-                    }],
-                    yAxes:[{
-                        gridLines: {
-                        drawTicks: true,
-                        color:'rgba(255, 255, 255, 0.35)'
-                        }
-                    }]
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                drawTicks: true,
+                                color: 'rgba(255, 255, 255, 0.35)'
+                            }
+                        }]
+                    }
                 }
-            }
-        } />
+            } />
     )
 }
 

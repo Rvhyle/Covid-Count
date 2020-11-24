@@ -5,18 +5,12 @@ import { Bar } from 'react-chartjs-2';
 
 
 const NorthEast = () => {
-
     const NEStates = ['ME', 'VT', 'NH', 'MA', 'NY', 'NJ', 'PA', 'RI', 'CT'];
     // Deault Array will be dfaulted to 1 till Promises are fulfilled for each state
     const [neData, setNeData] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1]);
     const [chartData, setChartData] = useState({});
 
     const ChartSetUp = () => {
-        getStateData(NEStates)
-            .then(data => {
-                setNeData([...data])
-            })
-            .catch(err => console.log(err));
 
         setChartData({
             labels: [...NEStates],
@@ -31,8 +25,21 @@ const NorthEast = () => {
     }
 
     useEffect(() => {
-        ChartSetUp();
-    }, [...neData]);
+        let mounted = true;
+
+        getStateData([...NEStates])
+            .then(data => {
+                if (mounted) { //Gets rid of Memory Leaks, Stops Api call and prevents state change when unmounting component
+                    setNeData([...data])
+                    ChartSetUp();
+                }
+            })
+            .catch(err => console.log(err));
+
+        return () => {
+            mounted = false;
+        }
+    }, [neData, ChartSetUp]);
 
     return (
         <Bar

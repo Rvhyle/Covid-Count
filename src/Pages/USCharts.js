@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 // Components
 import NorthEast from '../Components/NorthEast';
 import MidWest from '../Components/MidWest';
@@ -11,7 +11,7 @@ import { StyledCharts } from '../Styled-Components/StyledCharts';
 const USCharts = () => {
 
     useEffect(() => {
-    window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     })
 
     return (
@@ -30,9 +30,9 @@ const USCharts = () => {
                 <div className="chart">
                     <SouthWest />
                 </div>
-                <div className="chart">
+                {/* <div className="chart">
                     <West />
-                </div>
+                </div> */}
             </div>
         </StyledCharts>
     )

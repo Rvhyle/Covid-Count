@@ -12,11 +12,6 @@ const SouthWest = () => {
     const [chartData, setChartData] = useState({});
 
     const ChartSetUp = () => {
-        getStateData(SWStates)
-            .then(data => {
-                setSwData([...data])
-            })
-            .catch(err => console.log(err));
 
         setChartData({
             labels: [...SWStates],
@@ -31,32 +26,47 @@ const SouthWest = () => {
     }
 
     useEffect(() => {
-        ChartSetUp();
-    }, [...swData]);
+        let mounted = true;
+
+        getStateData(SWStates)
+            .then(data => {
+                if (mounted) { //Gets rid of Memory Leaks, Stops Api call and prevents state change when unmounting component
+                    setSwData([...data])
+                    ChartSetUp();
+                }
+
+            })
+            .catch(err => console.log(err));
+
+        return () => {
+            mounted = false;
+        }
+
+    }, [swData, ChartSetUp]);
 
     return (
-        <Bar 
-        data={chartData} 
-        options={
-            { 
-                responsive: true ,
-                title: {display: true,text:"South West Region Cases",fontSize:20,fontColor:'#ffffff'},
-                scales:{
-                    xAxes:[{
+        <Bar
+            data={chartData}
+            options={
+                {
+                    responsive: true,
+                    title: { display: true, text: "South West Region Cases", fontSize: 20, fontColor: '#ffffff' },
+                    scales: {
+                        xAxes: [{
                             gridLines: {
-                            drawTicks: true,
-                            color:'rgba(255, 255, 255, 0.10)'
+                                drawTicks: true,
+                                color: 'rgba(255, 255, 255, 0.10)'
                             }
-                    }],
-                    yAxes:[{
-                        gridLines: {
-                        drawTicks: true,
-                        color:'rgba(255, 255, 255, 0.35)'
-                        }
-                    }]
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                drawTicks: true,
+                                color: 'rgba(255, 255, 255, 0.35)'
+                            }
+                        }]
+                    }
                 }
-            }
-        } />
+            } />
     )
 }
 
