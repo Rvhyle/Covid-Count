@@ -5,16 +5,24 @@ import { Bar } from 'react-chartjs-2';
 
 
 const West = () => {
-
-    const WestStates = ['WA', 'MT', 'OR', 'ID', 'WY', 'CA', 'NV', 'UT', 'CO', 'AK', 'HI'];
     // Deault Array will be dfaulted to 1 till Promises are fulfilled for each state
     const [westData, setWData] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
     const [chartData, setChartData] = useState({});
+    const [westStates] = useState(['WA', 'MT', 'OR', 'ID', 'WY', 'CA', 'NV', 'UT', 'CO', 'AK', 'HI']);
 
-    const ChartSetUp = () => {
+    useEffect(() => {
+        let mounted = true;
+
+        getStateData(westStates)
+            .then(data => {
+                if (mounted) {
+                    setWData([...data])
+                }
+            })
+            .catch(err => console.log(err));
 
         setChartData({
-            labels: [...WestStates],
+            labels: [...westStates],
             datasets: [
                 {
                     label: "Positive Cases in West Region",
@@ -23,25 +31,12 @@ const West = () => {
                 }
             ]
         })
-    }
-
-    useEffect(() => {
-        let mounted = true;
-
-        getStateData(WestStates)
-            .then(data => {
-                if (mounted) {
-                    setWData([...data])
-                    ChartSetUp();
-                }
-            })
-            .catch(err => console.log(err));
 
         return () => {
             mounted = false;
         }
 
-    }, [westData, ChartSetUp]);
+    }, [westData, westStates]);
 
     return (
         <Bar

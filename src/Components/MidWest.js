@@ -5,15 +5,25 @@ import { Bar } from 'react-chartjs-2';
 
 
 const MidWest = () => {
-
-    const MWStates = ['MI', 'OH', 'IN', 'IL', 'WI', 'MN', 'IA', 'MO', 'ND', 'SD', 'NE', 'KS'];
     // Deault Array will be dfaulted to 1 till Promises are fulfilled for each state
     const [mwData, setMwData] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
     const [chartData, setChartData] = useState({});
+    const [mwStates] = useState(['MI', 'OH', 'IN', 'IL', 'WI', 'MN', 'IA', 'MO', 'ND', 'SD', 'NE', 'KS']);
 
-    const ChartSetUp = () => {
+
+    useEffect(() => {
+        let mounted = true;
+
+        getStateData(mwStates)
+            .then(data => {
+                if (mounted) { //Gets rid of Memory Leaks, Stops Api call and prevents state change when unmounting component
+                    setMwData([...data])
+                }
+            })
+            .catch(err => console.log(err));
+
         setChartData({
-            labels: [...MWStates],
+            labels: [...mwStates],
             datasets: [
                 {
                     label: "Positive Cases in MW Region",
@@ -22,25 +32,12 @@ const MidWest = () => {
                 }
             ]
         })
-    }
-
-    useEffect(() => {
-        let mounted = true;
-
-        getStateData(MWStates)
-            .then(data => {
-                if (mounted) { //Gets rid of Memory Leaks, Stops Api call and prevents state change when unmounting component
-                    setMwData([...data])
-                    ChartSetUp();
-                }
-            })
-            .catch(err => console.log(err));
 
         return () => {
             mounted = false;
         }
 
-    }, [mwData, ChartSetUp]);
+    }, [mwData, mwStates]);
 
     return (
         <Bar

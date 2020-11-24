@@ -30,9 +30,9 @@ const USCharts = () => {
                 <div className="chart">
                     <SouthWest />
                 </div>
-                {/* <div className="chart">
+                <div className="chart">
                     <West />
-                </div> */}
+                </div>
             </div>
         </StyledCharts>
     )

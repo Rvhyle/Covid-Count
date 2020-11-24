@@ -5,16 +5,25 @@ import { Bar } from 'react-chartjs-2';
 
 
 const SouthWest = () => {
-
-    const SWStates = ['AZ', 'NM', 'TX', 'OK'];
     // Deault Array will be dfaulted to 1 till Promises are fulfilled for each state
     const [swData, setSwData] = useState([1, 1, 1, 1]);
     const [chartData, setChartData] = useState({});
+    const [swStates] = useState(['AZ', 'NM', 'TX', 'OK']);
 
-    const ChartSetUp = () => {
+    useEffect(() => {
+        let mounted = true;
+
+        getStateData(swStates)
+            .then(data => {
+                if (mounted) { //Gets rid of Memory Leaks, Stops Api call and prevents state change when unmounting component
+                    setSwData([...data])
+                }
+
+            })
+            .catch(err => console.log(err));
 
         setChartData({
-            labels: [...SWStates],
+            labels: [...swStates],
             datasets: [
                 {
                     label: "Positive Cases in SW Region",
@@ -23,26 +32,12 @@ const SouthWest = () => {
                 }
             ]
         })
-    }
-
-    useEffect(() => {
-        let mounted = true;
-
-        getStateData(SWStates)
-            .then(data => {
-                if (mounted) { //Gets rid of Memory Leaks, Stops Api call and prevents state change when unmounting component
-                    setSwData([...data])
-                    ChartSetUp();
-                }
-
-            })
-            .catch(err => console.log(err));
 
         return () => {
             mounted = false;
         }
 
-    }, [swData, ChartSetUp]);
+    }, [swData, swStates]);
 
     return (
         <Bar

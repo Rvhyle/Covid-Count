@@ -5,15 +5,26 @@ import { Bar } from 'react-chartjs-2';
 
 
 const SouthEast = () => {
-
-    const SEStates = ['MD', 'DE', 'WV', 'VA', 'KY', 'TN', 'AR', 'LA', 'MS', 'AL', 'NC', 'SC', 'GA', 'FL'];
     // Deault Array will be dfaulted to 1 till Promises are fulfilled for each state
     const [seData, setSeData] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
     const [chartData, setChartData] = useState({});
+    const [seStates] = useState(['MD', 'DE', 'WV', 'VA', 'KY', 'TN', 'AR', 'LA', 'MS', 'AL', 'NC', 'SC', 'GA', 'FL']);
 
-    const ChartSetUp = () => {
+
+    useEffect(() => {
+        let mounted = true;
+
+        getStateData(seStates)
+            .then(data => {
+                if (mounted) { //Gets rid of Memory Leaks, Stops Api call and prevents state change when unmounting component
+                    setSeData([...data])
+                }
+
+            })
+            .catch(err => console.log(err));
+
         setChartData({
-            labels: [...SEStates],
+            labels: [...seStates],
             datasets: [
                 {
                     label: "Positive Cases in SE Region",
@@ -22,26 +33,12 @@ const SouthEast = () => {
                 }
             ]
         })
-    }
-
-    useEffect(() => {
-        let mounted = true;
-
-        getStateData(SEStates)
-            .then(data => {
-                if (mounted) { //Gets rid of Memory Leaks, Stops Api call and prevents state change when unmounting component
-                    setSeData([...data])
-                    ChartSetUp();
-                }
-
-            })
-            .catch(err => console.log(err));
 
         return () => {
             mounted = false;
         }
 
-    }, [seData, ChartSetUp]);
+    }, [seData, seStates]);
 
     return (
         <Bar
