@@ -19,6 +19,6 @@ h1{
 }
 
 @media screen and (max-width:767px) {
-    row-gap:100px;
+    padding-bottom: 3rem;
 }
 `

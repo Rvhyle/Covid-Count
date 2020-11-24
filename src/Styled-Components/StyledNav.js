@@ -63,6 +63,8 @@ li{
 }
 /* Mobile Screens */
 @media screen and (max-width:767px) {
+    width:60%;
     padding:2rem;
+    justify-content:space-between;
 }
 `
