@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // Components
 import Cases from '../Components/Cases';
-import Regions from '../Components/Regions';
 // Styled Components
 import { Home } from '../Styled-Components/StyledHome';
 
@@ -46,6 +45,10 @@ const HomePage = () => {
     // Whenever Component Mounts/Updates
     useEffect(() => {
         getData();
+
+        return () => {
+            console.log("unmounted");
+        }
     }, []);
 
     return (
@@ -61,7 +64,6 @@ const HomePage = () => {
                 usCaseIncrease={usCaseIncrease}
                 usTestTotal={usTestTotal}
             />
-            <Regions />
         </Home>
     )
 }
