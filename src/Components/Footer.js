@@ -13,10 +13,9 @@ const FooterStyled = styled.footer`
 display: flex;
 align-items:center;
 justify-content:center;
-width: 100vw;
+width: 100%;
 height:50px;
 bottom:0;
-position:fixed;
 background-color:#252525;
  a{
     color: white;

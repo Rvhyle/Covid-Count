@@ -17,6 +17,7 @@ export const NavStyled = styled.nav`
         flex-direction:column;
         justify-items:center;
         text-align:center;
+        height:130px;
     }
 `
 
@@ -39,5 +40,29 @@ p{
 @media screen and (max-width:767px) {
     padding:0rem;
     padding-top:1rem;
+}
+`
+
+// LINKS
+export const NavLinks = styled.ul`
+display: flex;
+gap:50px;
+padding-right:8rem;
+li{
+    list-style:none;
+    font-size:1.2rem;
+
+    .link{
+        color:white;
+        text-decoration:none;
+
+        &:focus {
+            text-decoration:underline;
+        }
+    }
+}
+/* Mobile Screens */
+@media screen and (max-width:767px) {
+    padding:2rem;
 }
 `
