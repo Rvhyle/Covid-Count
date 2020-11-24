@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // Components
 import Cases from '../Components/Cases';
+import Regions from '../Components/Regions';
 // Styled Components
 import { Home } from '../Styled-Components/StyledHome';
 
@@ -16,6 +17,8 @@ const HomePage = () => {
     const [usTestTotal, setUsTestTotal] = useState(0);
     // Fetch API from web
     const getData = async () => {
+        let statArray = [];
+
         try {
             let res = await axios.get("//api.covidtracking.com/v1/us/current.json")
             // Capturing data from request
@@ -28,15 +31,8 @@ const HomePage = () => {
             let caseIncrease = res.data[0].positiveIncrease;
             let testTotal = res.data[0].totalTestResults;
 
-            // Setting States
-            setUsCases(cases);
-            setUsDeaths(death);
-            setUsNegatives(negative);
-            setUsRecovered(recovered);
-            setUsHospitalized(hospitalized);
-            setUsDeathIncrease(deathIncrease);
-            setUsCaseIncrease(caseIncrease);
-            setUsTestTotal(testTotal);
+            statArray = [cases, death, negative, recovered, hospitalized, deathIncrease, caseIncrease, testTotal];
+            return statArray;
         } catch (err) {
             console.log(err);
         }
@@ -44,11 +40,26 @@ const HomePage = () => {
 
     // Whenever Component Mounts/Updates
     useEffect(() => {
-        getData();
+        let mounted = true;
+
+        getData()
+            .then(data => {
+                if (mounted) {
+                    setUsCases(data[0]);
+                    setUsDeaths(data[1]);
+                    setUsNegatives(data[2]);
+                    setUsRecovered(data[3]);
+                    setUsHospitalized(data[4]);
+                    setUsDeathIncrease(data[5]);
+                    setUsCaseIncrease(data[6]);
+                    setUsTestTotal(data[7]);
+                }
+            })
 
         return () => {
-            console.log("unmounted");
+            mounted = false;
         }
+
     }, []);
 
     return (
@@ -64,6 +75,7 @@ const HomePage = () => {
                 usCaseIncrease={usCaseIncrease}
                 usTestTotal={usTestTotal}
             />
+            <Regions />
         </Home>
     )
 }
